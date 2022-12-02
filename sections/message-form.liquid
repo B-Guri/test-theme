@@ -1,0 +1,119 @@
+<style>
+  .message-form__button {
+    height: 57px;
+    width: 221.22px;
+    border-radius: 10px;
+    background-color: #1a1a1a;
+
+    color: #fff;
+    font-size: 16px;
+    font-weight: 700;
+
+    cursor: pointer;
+  }
+
+  .message-form__input {
+    height: 64px;
+    width: 100%;
+    border-radius: 8px;
+    padding: 18px 0 18px 19px;
+    background-color: #fff;
+    box-shadow: 0 16px 32px rgba(202, 203, 210, 0.25);
+    border: none;
+
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+    color: #424242;
+  }
+
+  .message-form__input::placeholder {
+    color: #414042;
+    opacity: 0.5;
+  }
+
+  .message-form__inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 32px;
+    row-gap: 35px;
+  }
+
+  .grid-full-width {
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  .message-form__input-multiline {
+    resize: none;
+    display: block;
+    height: 338px;
+    margin: 53px 0 51px;
+  }
+
+  .message-form__header {
+    margin-bottom: 35px;
+  }
+
+  .message-form__header__title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+  }
+
+  .message-form__header__desc {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 28px;
+    color: #1a1a1a;
+  }
+</style>
+
+<div class="message-form__content">
+  {%- form "message", id: "message-form"-%}
+    <div class="message-form__header">
+      <h3 class="message-form__header__title">{{ section.settings.title }}</h3>
+      <p class="message-form__header__desc">{{ section.settings.description }}</p>
+    </div>
+    <div class="message-form__inputs">
+      <input type="text" class="message-form__input" placeholder="Full Name*"/>
+      <input type="text" class="message-form__input" placeholder="Title/Position*"/>
+      <input type="text" class="message-form__input" placeholder="Title/Position*"/>
+      <input type="text" class="message-form__input" placeholder="Title/Position*"/>
+      <input type="text" class="message-form__input" placeholder="Title/Position*"/>
+      <input type="text" class="message-form__input" placeholder="Title/Position*"/>
+      <textarea class="message-form__input message-form__input-multiline" placeholder="Enter Message*"></textarea>
+    </div>
+    <button class="message-form__button">{{ section.settings.button-text }}</button>
+  {%- endform -%}
+</div>
+
+{% schema %}
+  {
+    "name": "message-form",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Enter title",
+        "default": "Contact Us"
+      }, {
+        "type": "text",
+        "id": "description",
+        "label": "Enter description",
+        "default": "The Voodoo team is looking forward to hearing from you!"
+      }, {
+        "type": "text",
+        "id": "button-text",
+        "label": "Enter button text",
+        "default": "Send Message"
+      }
+    ],
+    "presets": [
+      {
+        "name": "message-form"
+      }
+    ]
+  }
+{% endschema %}
