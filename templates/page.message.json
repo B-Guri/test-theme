@@ -7,5 +7,5 @@
       "type": "message-form"
     }
   },
-  "order": ["main", "form"]
+  "order": ["main", "message-form"]
 }
