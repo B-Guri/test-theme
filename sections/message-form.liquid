@@ -87,7 +87,7 @@
       <input type="text" class="message-form__input" placeholder="Title/Position*"/>
       <input type="text" class="message-form__input" placeholder="Title/Position*"/>
       <input type="text" class="message-form__input" placeholder="Title/Position*"/>
-      <textarea class="message-form__input message-form__input-multiline" placeholder="Enter Message*"></textarea>
+      <textarea class="message-form__input message-form__input-multiline grid-full-width" placeholder="Enter Message*"></textarea>
     </div>
     <button class="message-form__button">{{ section.settings.button-text }}</button>
   {%- endform -%}
@@ -113,10 +113,13 @@
         "label": "Enter button text",
         "default": "Send Message"
       }, {
-        "type": "text",
-        "label": "Padding",
+        "type": "range",
+        "min": 0,
+        "max": 200,
+        "step": 1,
+        "label": "Top and Bottom paddings",
         "id": "padding",
-        "default": "100"
+        "default": 100
       }
     ],
     "presets": [

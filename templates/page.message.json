@@ -1,11 +1,8 @@
 {
   "sections": {
-    "main": {
-      "type": "main-page"
-    },
     "message-form": {
       "type": "message-form"
     }
   },
-  "order": ["main", "message-form"]
+  "order": ["message-form"]
 }
