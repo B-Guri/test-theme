@@ -1,6 +1,6 @@
 <style>
   .message-form__content {
-    padding: {{ section.settings.padding }}100px;
+    padding: {{ section.settings.padding | append: 'px'  }}100px;
   }
 
   .message-form__button {
