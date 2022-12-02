@@ -1,4 +1,11 @@
 <style>
+  .message-form__content {
+    padding-top: {{ section.settings.padT }};
+    padding-bottom: {{ section.settings.padB }};
+    padding-left: {{ section.settings.padL }};
+    padding-right: {{ section.settings.padR }};
+  }
+
   .message-form__button {
     height: 57px;
     width: 221.22px;
@@ -108,6 +115,11 @@
         "id": "button-text",
         "label": "Enter button text",
         "default": "Send Message"
+      }, {
+        "padT": 36,
+        "padB": 36,
+        "padL": 36,
+        "padR": 36
       }
     ],
     "presets": [
