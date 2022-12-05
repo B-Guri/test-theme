@@ -2,7 +2,10 @@
   "sections": {
     "message-form": {
       "type": "message-form"
+    },
+    "custom-video": {
+      "type": "custom-video"
     }
   },
-  "order": ["message-form"]
+  "order": ["custom-video", "message-form"]
 }

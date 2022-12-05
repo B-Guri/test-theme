@@ -1,0 +1,36 @@
+{%- style -%}
+  .custom-video__content {
+    width: 100vw;
+    height: auto;
+  }
+  iframe {
+    width: 100vw;
+  }
+{%- endstyle -%}
+
+<div class="custom-video__content">
+  <template>
+    {%- if section.settings.video_url.type == "youtube" -%}
+      <iframe src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?enablejsapi=1" class="js-youtube" allow="autoplay; encrypted-media" allowfullscreen title="{{ section.settings.description | escape }}"></iframe>
+    {%- else -%}
+      <iframe src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}" class="js-vimeo" allow="autoplay; encrypted-media" allowfullscreen title="{{ section.settings.description | escape }}"></iframe>
+    {%- endif -%}
+  </template>
+</div>
+
+{% schema %}
+  {
+    "name": "custom-video",
+    "settings": [
+      {
+        "type": "video_url",
+        "id": "video-url",
+        "accept": [
+          "youtube", "vimeo"
+        ],
+        "default": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+        "label": "Video url"
+      }
+    ]
+  }
+{% endschema %}
