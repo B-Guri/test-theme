@@ -17,4 +17,8 @@
   position: absolute;
   top: calc(50% - 40px);
   left: calc(50% - 40px);
+  visibility: hidden;
+}
+.on-pause {
+  visibility: visible;
 }
