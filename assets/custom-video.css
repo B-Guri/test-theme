@@ -1,0 +1,11 @@
+.custom-video__content {
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  pointer-events: none;
+}
+.video-player {
+  width: 300%;
+  height: 100%;
+  margin-left: -100%;
+}
