@@ -34,14 +34,15 @@
 <div class="custom-video__content">
 
   {%- if section.settings.video_url.type == "youtube" -%}
-    {%- comment -%}
-      <iframe class="video-player" , src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?enablejsapi=1&controls=0&loop=1&showinfo=0&modestbranding=1&rel=0" frameborder="0"></iframe>
-    {%- endcomment -%}
-    <iframe class="video-player" , src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autoplay=1&mute=1&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe loading="lazy" class="video-player" , src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autoplay=1&mute=1&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1&iv_load_policy=3&cc_load_policy=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   {%- else -%}
-    <iframe class="video-player" , src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?background=1" frameborder="0"></iframe>
+    <iframe loading="lazy" class="video-player" , src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?background=1" frameborder="0"></iframe>
   {%- endif -%}
-
+  {% for media in product.media %}
+    {% if media.media_type == 'video' %}
+      {{ media | video_tag }}
+    {% endif %}
+  {% endfor %}
 </div>
 
 {% schema %}
@@ -55,7 +56,7 @@
           "youtube", "vimeo"
         ],
 
-// "default": "https://www.youtube.com/watch?v=k85mRPqvMbE&vl",
+// "default": "https://www.youtube.com/watch?v=k85mRPqvMbE",
 
         "default": "https://vimeo.com/773601002",
         "label": "Video url"
