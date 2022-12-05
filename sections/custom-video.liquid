@@ -1,8 +1,9 @@
 {%- style -%}
-  .custom-video__content {
+  /* .custom-video__content {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
+    padding-bottom: 56.25%;
     height: 0;
+    pointer-events: none;
   }
   .video-player {
     position: absolute;
@@ -10,15 +11,35 @@
     left: 0;
     width: 100%;
     height: 100%;
+  } */
+  .custom-video__content {
+    overflow: hidden;
+    width: 100%;
+    /* Keep it the right aspect-ratio */
+    aspect-ratio: 16 / 9;
+    /* No clicking/hover effects */
+    pointer-events: none;
+  }
+  .video-player {
+    /* Extend it beyond the viewport... */
+    width: 300%;
+    height: 100%;
+    /* ...and bring it back again */
+    margin-left: -100%;
   }
 {%- endstyle -%}
+
+
 
 <div class="custom-video__content">
 
   {%- if section.settings.video_url.type == "youtube" -%}
-    <iframe class="video-player" , src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?enablejsapi=1&controls=0&autoplay=1&loop=1&modestbranding" frameborder="0" controls="0"></iframe>
+    {%- comment -%}
+      <iframe class="video-player" , src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?enablejsapi=1&controls=0&loop=1&showinfo=0&modestbranding=1&rel=0" frameborder="0"></iframe>
+    {%- endcomment -%}
+    <iframe class="video-player" , src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autoplay=1&mute=1&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   {%- else -%}
-    <iframe class="video-player" , src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}" class="js-vimeo" allow="autoplay; encrypted-media" allowfullscreen title="{{ section.settings.description | escape }}"></iframe>
+    <iframe class="video-player" , src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?background=1" frameborder="0"></iframe>
   {%- endif -%}
 
 </div>
@@ -33,7 +54,10 @@
         "accept": [
           "youtube", "vimeo"
         ],
-        "default": "https://www.youtube.com/watch?v=k85mRPqvMbE&vl",
+
+// "default": "https://www.youtube.com/watch?v=k85mRPqvMbE&vl",
+
+        "default": "https://vimeo.com/773601002",
         "label": "Video url"
       }
     ],
