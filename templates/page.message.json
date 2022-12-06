@@ -5,7 +5,7 @@
       "settings": {
         "video_url": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/7d988c4a03984b9fb4b3213592f7f93d.mp4",
         "full_width": true,
-        "autoplay": false,
+        "autoplay": true,
         "mute": true,
         "modal": false
       }
