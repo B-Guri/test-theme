@@ -1,8 +1,9 @@
 let playerContainers = document.querySelectorAll(".custom-video__content");
 
-playerContainers.map((playerContainer) => {
-  playerContainer.addEventListener("click", () => {
-    let player = playerContainer.lastChild;
+for (let i = 0; i < playerContainers.length; i++) {
+  playerContainers[i].addEventListener("click", () => {
+    let player = playerContainers[i].querySelector(".video-player");
+    let playButton = playerContainers[i].querySelector(".play-button");
     // player = document.querySelector(".video-player");
     console.log("click");
     let command;
@@ -22,7 +23,7 @@ playerContainers.map((playerContainer) => {
     playButton.classList.toggle("on-pause");
     player.contentWindow.postMessage(JSON.stringify(command), "*");
   });
-});
+}
 
 function pauseVideo(platform) {
   let command;
