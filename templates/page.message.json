@@ -18,6 +18,16 @@
         "button-text": "Send Message",
         "padding": 100
       }
+    },
+    "c4d46a89-130e-4206-8dba-4695d403d49d": {
+      "type": "custom-video",
+      "settings": {
+        "video_url": "https://www.youtube.com/watch?v=k85mRPqvMbE",
+        "full_width": true,
+        "autoplay": true,
+        "mute": true,
+        "modal": false
+      }
     }
   },
   "order": ["custom-video", "message-form"]
