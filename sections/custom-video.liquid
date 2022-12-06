@@ -13,22 +13,25 @@
       </g>
     </svg>
   </div>
-  {%- if section.settings.video_url.type == "youtube" -%}
-    <iframe loading="lazy" class="video-player yt" , src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autopause=1&mute=1&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  {%- elsif section.settings.video_url.type == "vimeo" -%}
-    <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autopause=1&loop=1&muted=1&controls=0" frameborder="0"></iframe>    
-  {%- else -%}
-  <video 
-    class="video-player"
-    playsinline="playsinline" 
-    autoplay="autoplay" 
-    loop="loop" muted="muted" 
-    controls="controls" 
-    preload="metadata" 
-    aria-label="Potion beats" 
-    poster="//cdn.shopify.com/s/files/1/0561/7470/6753/products/4edc28a708b7405093a927cebe794f1a.thumbnail.0000000_small.jpg?v=1655255324">
-    <source src={{ section.settings.shopify_video }} type="video/mp4">
-  </video>
+  {%- if section.settings.shopify_video != blank -%}
+    <video 
+      class="video-player"
+      playsinline="playsinline" 
+      autoplay="autoplay" 
+      loop="loop" muted="muted" 
+      controls="controls" 
+      preload="metadata" 
+      aria-label="Potion beats" 
+      poster="//cdn.shopify.com/s/files/1/0561/7470/6753/products/4edc28a708b7405093a927cebe794f1a.thumbnail.0000000_small.jpg?v=1655255324">
+      <source src={{ section.settings.shopify_video }} type="video/mp4">
+    </video>
+    {%- else -%}
+    {%- if section.settings.video_url.type == "youtube" -%}
+      <iframe loading="lazy" class="video-player yt" , src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autopause=1&mute=1&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    {%- elsif section.settings.video_url.type == "vimeo" -%}
+      <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autopause=1&loop=1&muted=1&controls=0" frameborder="0"></iframe>    
+    {%- else -%}
+    {%- endif -%}
   {%- endif -%}
 </div>
 <script src="{{ 'custom-video.js' | asset_url }}" defer="defer"></script>
