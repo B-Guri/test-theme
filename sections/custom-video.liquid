@@ -1,7 +1,10 @@
 {{ "custom-video.css" | asset_url | stylesheet_tag }}
 
-{%- assign is_full_width = section.settings.full_width -%}
-<div class="custom-video__content">
+{%- if section.settings.full_width -%}
+  <div class="custom-video__content full-width">
+{%- else -%}
+  <div class="custom-video__content page-width">
+{%- endif -%}
   <div class="play-button on-pause">
     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 485 485" style="enable-background:new 0 0 485 485;" xml:space="preserve" fill={{ section.settings.play-button_color}}>
       <g>
@@ -58,18 +61,6 @@
   {%- endcomment -%}
 </div>
 
-<script>
-  let isFullWidth = {{is_full_width}};
-  let videoContainer = document.querySelector(".custom-video__content");
-  if(isFullWidth){
-    videoContainer.classList.add("full-width");
-  }
-  else
-  {
-    videoContainer.classList.add("page-width");
-  }
-</script>
-
 {% schema %}
   {
     "name": "Section Video",
@@ -86,7 +77,7 @@
         "type": "checkbox",
         "id": "full_width",
         "label": "Full width",
-        "default": false
+        "default": true
       },
       {
         "type": "checkbox",
