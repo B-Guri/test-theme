@@ -14,9 +14,9 @@
     </svg>
   </div>
   {%- if section.settings.video_url contains "youtube" -%}
-    <iframe loading="lazy" class="video-player yt" , src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autopause=1&mute=1&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe loading="lazy" class="video-player yt" , src="https://www.youtube.com/embed/{{ section.settings.video_url | remove: "https://www.youtube.com/watch?v=" }}?autopause=1&mute=1&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   {%- elsif section.settings.video_url contains "vimeo" -%}
-  <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autopause=1&loop=1&muted=1&controls=0" frameborder="0"></iframe>    
+    <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url | remove: "https://vimeo.com/" }}?autopause=1&loop=1&muted=1&controls=0" frameborder="0"></iframe>    
   {%- else -%}
   <video 
     class="video-player"
