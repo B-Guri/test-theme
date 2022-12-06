@@ -14,14 +14,21 @@
     </svg>
   </div>
   {%- if section.settings.video_url contains "youtube" -%}
-    <p>{{section.settings.video_url}}</p>
-    <p>Yt</p>
+    <iframe loading="lazy" class="video-player yt" , src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autopause=1&mute=1&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   {%- elsif section.settings.video_url contains "vimeo" -%}
-  <p>{{section.settings.video_url}}</p>
-  <p>Vm</p>
+  <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autopause=1&loop=1&muted=1&controls=0" frameborder="0"></iframe>    
   {%- else -%}
-  <p>{{section.settings.video_url}}</p>
-  "emb"
+  <video 
+    class="video-player"
+    playsinline="playsinline" 
+    autoplay="autoplay" 
+    loop="loop" muted="muted" 
+    controls="controls" 
+    preload="metadata" 
+    aria-label="Potion beats" 
+  >
+    <source src={{ section.settings.video_url }} type="video/mp4">
+  </video>
   {%- endif -%}
 {%- comment -%} {%- if section.settings.shopify_video != blank -%}
     <video 
@@ -55,7 +62,7 @@
         "type": "text",
         "label": "Video Url",
         "id": "video_url",
-        "default": "https://www.youtube.com/watch?v=k85mRPqvMbE"
+        "default": "https://vimeo.com/773601002"
         // "default": "https://vimeo.com/773601002",
       }
       // {
