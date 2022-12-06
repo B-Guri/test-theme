@@ -11,6 +11,7 @@
 {%- else -%}    
   <div class="play-button on-pause">
 {%- endif -%}
+
     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 485 485" style="enable-background:new 0 0 485 485;" xml:space="preserve" fill={{ section.settings.play-button_color}}>
       <g>
         <path d="M413.974,71.026C368.171,25.225,307.274,0,242.5,0S116.829,25.225,71.026,71.026C25.225,116.829,0,177.726,0,242.5
@@ -21,6 +22,14 @@
       </g>
     </svg>
   </div>
+
+  <div class="video-text-container">
+      <h1 class="video-text__title">{{section.settings.video_title}}</h1>
+      <p>
+        {{section.settings.video_text}}
+      </p>
+  </div>
+
   {%- if section.settings.autoplay -%}
     {%- assign autoplay = "autoplay=1&" -%}
   {%- endif -%}
@@ -29,7 +38,7 @@
   {%- if section.settings.video_url contains "youtube" -%}
     {%- if section.settings.mute -%}
       {%- assign ytmute = "&mute=1" -%}
-  {%- endif -%}
+    {%- endif -%}
     <iframe loading="lazy" class="video-player yt" , src="https://www.youtube.com/embed/{{ section.settings.video_url | remove: "https://www.youtube.com/watch?v="}}?{{autoplay}}loop=1&disablekb=1%playlist={{ section.settings.video_url | remove: "https://www.youtube.com/watch?v="}}&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1{{ytmute}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   {%- elsif section.settings.video_url contains "vimeo" -%}
   {%- if section.settings.mute -%}
@@ -52,6 +61,7 @@
       <source src={{ section.settings.video_url }} type="video/mp4">
     </video>
   {%- endif -%}
+
 </div>
 
 <script src={{ "custom-video.js" | asset_url}} defer="defer"></script>
@@ -88,6 +98,18 @@
         "id": "modal",
         "label": "Modal",
         "default": false
+      },
+      {
+        "type": "text",
+        "id": "video_title",
+        "label": "Title",
+        "default": "Title"
+      },
+      {
+        "type": "richtext",
+        "id": "video_text",
+        "label": "Text",
+        "default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vestibulum sed arcu non odio euismod. Nibh venenatis cras sed felis. Sollicitudin aliquam ultrices sagittis orci a. Augue lacus viverra vitae congue eu consequat ac. Sagittis purus sit amet volutpat consequat mauris nunc congue. Elementum tempus egestas sed sed risus pretium. "
       }
     ],
     "presets": [
