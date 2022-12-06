@@ -51,6 +51,7 @@
 .video-text__text {
   color: white;
   max-width: var(--page-width);
+  text-align: center;
 }
 
 .on-pause {
