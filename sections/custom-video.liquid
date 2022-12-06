@@ -13,7 +13,7 @@
       </g>
     </svg>
   </div>
-  {%- comment -%} {%- if section.settings.shopify_video != blank -%}
+{%- if section.settings.shopify_video != blank -%}
     <video 
       class="video-player"
       playsinline="playsinline" 
@@ -32,16 +32,7 @@
       <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autopause=1&loop=1&muted=1&controls=0" frameborder="0"></iframe>    
     {%- else -%}
     {%- endif -%}
-  {%- endif -%} {%- endcomment -%}
-  {% for media in product.media %}
-    {% if media.media_type == 'external_video' %}
-      {% if media.host == 'youtube' %}
-        {{ media | external_video_url: color: 'white' | external_video_tag }}
-      {% elsif media.host == 'vimeo' %}
-        {{ media | external_video_url: loop: '1', muted: '1' | external_video_tag }}
-      {% endif %}
-    {% endif %}
-  {% endfor %}
+  {%- endif -%}
 </div>
 <script src="{{ 'custom-video.js' | asset_url }}" defer="defer"></script>
 
@@ -50,27 +41,29 @@
   {
     "name": "custom-video",
     "settings": [
-      // {
-      //   "type": "video_url",
-      //   "id": "video_url",
-      //   "accept": [
-      //     "youtube", "vimeo"
-      //   ],
+      {
+        "type": "video_url",
+        "id": "video_url",
+        "accept": [
+          "youtube", "vimeo"
+        ],
 
-      //   // "default": "https://www.youtube.com/watch?v=k85mRPqvMbE",
+        // "default": "https://www.youtube.com/watch?v=k85mRPqvMbE",
 
-      //   "default": "https://vimeo.com/773601002",
-      //   "label": "Video url"
-      // }, {
-      //   "type": "color",
-      //   "id": "play-button_color",
-      //   "default": "#FFFFFF",
-      //   "label": "Color for play button"
-      // }, {
-      //   "type": "video",
-      //   "id": "shopify_video",
-      //   "label": "Video from shopify",
-      // }
+        "default": "https://vimeo.com/773601002",
+        "label": "Video url"
+      },
+      {
+        "type": "color",
+        "id": "play-button_color",
+        "default": "#FFFFFF",
+        "label": "Color for play button"
+      },
+      {
+        "type": "video",
+        "id": "shopify_video",
+        "label": "Video from shopify"
+      }
     ],
     "presets": [
       {
