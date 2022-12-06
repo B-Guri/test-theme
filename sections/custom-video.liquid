@@ -13,17 +13,24 @@
       </g>
     </svg>
   </div>
+  {%- assign video_params = "" -%}
+  {%- if section.settings.autoplay -%}
+    {{ video_params | append: "&autoplay=1"}}
+  {%- endif -%}
   {%- if section.settings.video_url contains "youtube" -%}
-    <iframe loading="lazy" class="video-player yt" , src="https://www.youtube.com/embed/{{ section.settings.video_url | remove: "https://www.youtube.com/watch?v=" }}?autopause=1&mute=1&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    {%- assign video_id = section.settings.video_url | remove: "https://www.youtube.com/watch?v=" -%}
+    <iframe loading="lazy" class="video-player yt" , src={{"https://www.youtube.com/embed/" | append: video_id | append: "?loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1" | append: video_params}} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   {%- elsif section.settings.video_url contains "vimeo" -%}
-    <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url | remove: "https://vimeo.com/" }}?autopause=1&loop=1&muted=1&controls=0" frameborder="0"></iframe>
+      {%- assign video_id = section.settings.video_url | remove: "https://vimeo.com/" -%}
+      {%- comment -%} <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url | remove: "https://vimeo.com/"}}?loop=1&controls=0" frameborder="0"></iframe> {%- endcomment -%}
+      <iframe loading="lazy" class="video-player vm" , src={{"https://player.vimeo.com/video/" | append: video_id | append: "?loop=1&controls=0" | append: video_params}} frameborder="0"></iframe>
   {%- else -%}
     <video 
       class="video-player" 
       playsinline="playsinline" 
       {%- if section.settings.autoplay -%}
         autoplay="autoplay"
-    {%- endif -%}
+      {%- endif -%}
       loop="loop" 
       {%- if section.settings.muted -%}
           muted="muted"
@@ -34,6 +41,7 @@
       <source src={{ section.settings.video_url }} type="video/mp4">
     </video>
   {%- endif -%}
+  {{video_params}}
   {%- comment -%}
     {%- if section.settings.shopify_video != blank -%}
     <video 
