@@ -3,10 +3,10 @@
     "custom-video": {
       "type": "custom-video",
       "settings": {
-        "video_url": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/7d988c4a03984b9fb4b3213592f7f93d.mp4",
+        "video_url": "https:\/\/vimeo.com\/773601002",
         "full_width": true,
         "autoplay": true,
-        "mute": true,
+        "mute": false,
         "modal": false
       }
     },
