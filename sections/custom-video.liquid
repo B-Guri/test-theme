@@ -16,9 +16,27 @@
   {%- if section.settings.video_url contains "youtube" -%}
     <iframe loading="lazy" class="video-player yt" , src="https://www.youtube.com/embed/{{ section.settings.video_url | remove: "https://www.youtube.com/watch?v=" }}?autopause=1&mute=1&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   {%- elsif section.settings.video_url contains "vimeo" -%}
-    <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url | remove: "https://vimeo.com/" }}?autopause=1&loop=1&muted=1&controls=0" frameborder="0"></iframe>    
+    <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url | remove: "https://vimeo.com/" }}?autopause=1&loop=1&muted=1&controls=0" frameborder="0"></iframe>
   {%- else -%}
-  <video 
+    <video 
+      class="video-player" 
+      playsinline="playsinline" 
+      {%- if section.settings.autoplay -%}
+        autoplay="autoplay"
+    {%- endif -%}
+      loop="loop" 
+      {%- if section.settings.muted -%}
+          muted="muted"
+      {%- endif -%}
+      controls="controls"
+      preload="metadata" 
+      aria-label="Potion beats">
+      <source src={{ section.settings.video_url }} type="video/mp4">
+    </video>
+  {%- endif -%}
+  {%- comment -%}
+    {%- if section.settings.shopify_video != blank -%}
+    <video 
     class="video-player"
     playsinline="playsinline" 
     autoplay="autoplay" 
@@ -26,30 +44,18 @@
     controls="controls" 
     preload="metadata" 
     aria-label="Potion beats" 
-  >
-    <source src={{ section.settings.video_url }} type="video/mp4">
-  </video>
-  {%- endif -%}
-{%- comment -%} {%- if section.settings.shopify_video != blank -%}
-    <video 
-      class="video-player"
-      playsinline="playsinline" 
-      autoplay="autoplay" 
-      loop="loop" muted="muted" 
-      controls="controls" 
-      preload="metadata" 
-      aria-label="Potion beats" 
-      poster="//cdn.shopify.com/s/files/1/0561/7470/6753/products/4edc28a708b7405093a927cebe794f1a.thumbnail.0000000_small.jpg?v=1655255324">
-      <source src={{ section.settings.shopify_video }} type="video/mp4">
+    poster="//cdn.shopify.com/s/files/1/0561/7470/6753/products/4edc28a708b7405093a927cebe794f1a.thumbnail.0000000_small.jpg?v=1655255324">
+    <source src={{ section.settings.shopify_video }} type="video/mp4">
     </video>
     {%- else -%}
     {%- if section.settings.video_url.type == "youtube" -%}
-      <iframe loading="lazy" class="video-player yt" , src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autopause=1&mute=1&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe loading="lazy" class="video-player yt" , src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autopause=1&mute=1&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     {%- elsif section.settings.video_url.type == "vimeo" -%}
-      <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autopause=1&loop=1&muted=1&controls=0" frameborder="0"></iframe>    
+    <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autopause=1&loop=1&muted=1&controls=0" frameborder="0"></iframe>    
     {%- else -%}
     {%- endif -%}
-  {%- endif -%} {%- endcomment -%}
+    {%- endif -%}
+  {%- endcomment -%}
 </div>
 <script src="{{ 'custom-video.js' | asset_url }}" defer="defer"></script>
 
@@ -62,32 +68,58 @@
         "type": "text",
         "label": "Video Url",
         "id": "video_url",
-        "default": "https://vimeo.com/773601002"
-        // "default": "https://vimeo.com/773601002",
+        // "default": "https://vimeo.com/773601002"
+
+// "default": "https://vimeo.com/773601002",
+        "default": "https://cdn.shopify.com/videos/c/o/v/7a63eb2354ea426095812bd4102a891c.mp4"
+      }, {
+        "type": "checkbox",
+        "id": "full_width",
+        "label": "Full width",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "autoplay",
+        "label": "Autoplay",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "mute",
+        "label": "Mute",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "modal",
+        "label": "Modal",
+        "default": false
       }
-      // {
-      //   "type": "video_url",
-      //   "id": "video_url",
-      //   "accept": [
-      //     "youtube", "vimeo"
-      //   ],
 
-      //   // "default": "https://www.youtube.com/watch?v=k85mRPqvMbE",
+// {
+// "type": "video_url",
+// "id": "video_url",
+// "accept": [
+//     "youtube", "vimeo"
+// ],
 
-      //   "default": "https://vimeo.com/773601002",
-      //   "label": "Video url"
-      // },
-      // {
-      //   "type": "color",
-      //   "id": "play-button_color",
-      //   "default": "#FFFFFF",
-      //   "label": "Color for play button"
-      // },
-      // {
-      //   "type": "video",
-      //   "id": "shopify_video",
-      //   "label": "Video from shopify"
-      // }
+// // "default": "https://www.youtube.com/watch?v=k85mRPqvMbE",
+
+// "default": "https://vimeo.com/773601002",
+// "label": "Video url"
+// },
+// {
+// "type": "color",
+// "id": "play-button_color",
+// "default": "#FFFFFF",
+// "label": "Color for play button"
+// },
+// {
+// "type": "video",
+// "id": "shopify_video",
+// "label": "Video from shopify"
+// }
     ],
     "presets": [
       {
