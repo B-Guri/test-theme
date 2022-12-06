@@ -1,27 +1,27 @@
-let playerContainer = document.querySelector(".custom-video__content");
-let player;
-let playButton = document.querySelector(".play-button");
+let playerContainers = document.querySelectorAll(".custom-video__content");
 
-playerContainer.addEventListener("click", () => {
-  player = playerContainer.lastChild;
-  // player = document.querySelector(".video-player");
-  console.log("click");
-  let command;
-  if (playButton.classList.contains("on-pause")) {
-    if (player.classList.contains("yt")) {
-      command = playVideo("youtube");
-    } else if (player.classList.contains("vm")) {
-      command = playVideo("vimeo");
+playerContainers.map((playerContainer) => {
+  playerContainer.addEventListener("click", () => {
+    let player = playerContainer.lastChild;
+    // player = document.querySelector(".video-player");
+    console.log("click");
+    let command;
+    if (playButton.classList.contains("on-pause")) {
+      if (player.classList.contains("yt")) {
+        command = playVideo("youtube");
+      } else if (player.classList.contains("vm")) {
+        command = playVideo("vimeo");
+      }
+    } else {
+      if (player.classList.contains("yt")) {
+        command = pauseVideo("youtube");
+      } else if (player.classList.contains("vm")) {
+        command = pauseVideo("vimeo");
+      }
     }
-  } else {
-    if (player.classList.contains("yt")) {
-      command = pauseVideo("youtube");
-    } else if (player.classList.contains("vm")) {
-      command = pauseVideo("vimeo");
-    }
-  }
-  playButton.classList.toggle("on-pause");
-  player.contentWindow.postMessage(JSON.stringify(command), "*");
+    playButton.classList.toggle("on-pause");
+    player.contentWindow.postMessage(JSON.stringify(command), "*");
+  });
 });
 
 function pauseVideo(platform) {
