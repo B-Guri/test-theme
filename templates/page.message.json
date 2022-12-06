@@ -3,10 +3,10 @@
     "custom-video": {
       "type": "custom-video",
       "settings": {
-        "video_url": "https:\/\/vimeo.com\/773601002",
+        "video_url": "https://vimeo.com/773601002",
         "full_width": true,
         "autoplay": true,
-        "mute": true,
+        "mute": false,
         "modal": false
       }
     },
@@ -20,8 +20,5 @@
       }
     }
   },
-  "order": [
-    "custom-video",
-    "message-form"
-  ]
+  "order": ["custom-video", "message-form"]
 }
