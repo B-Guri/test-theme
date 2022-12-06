@@ -5,7 +5,7 @@
       "settings": {
         "video_url": "https:\/\/vimeo.com\/773601002",
         "full_width": true,
-        "autoplay": true,
+        "autoplay": false,
         "mute": true,
         "modal": false
       }
