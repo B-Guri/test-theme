@@ -49,9 +49,11 @@
 }
 
 .video-text__text {
-  max-width: var(--page-width);
+  /* max-width: var(--page-width); */
+  max-width: 500px;
   color: #fff;
   text-align: center;
+  word-wrap: break-word;
 }
 
 .on-pause {
