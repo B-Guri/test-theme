@@ -3,9 +3,11 @@
     "custom-video": {
       "type": "custom-video",
       "settings": {
-        "video_url": "https://cdn.shopify.com/videos/c/o/v/7d988c4a03984b9fb4b3213592f7f93d.mp4",
-        "play-button_color": "#FFFFFF",
-        "shopify_video": "shopify://files/videos/production ID_3840442.mp4"
+        "video_url": "https:\/\/cdn.shopify.com\/videos\/c\/o\/v\/7d988c4a03984b9fb4b3213592f7f93d.mp4",
+        "full_width": true,
+        "autoplay": false,
+        "mute": true,
+        "modal": false
       }
     },
     "message-form": {
@@ -18,5 +20,8 @@
       }
     }
   },
-  "order": ["custom-video", "message-form"]
+  "order": [
+    "custom-video",
+    "message-form"
+  ]
 }
