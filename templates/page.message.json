@@ -3,9 +3,9 @@
     "custom-video": {
       "type": "custom-video",
       "settings": {
-        "video_url": "https://vimeo.com/773601002",
+        "video_url": "https:\/\/vimeo.com\/773601002",
         "full_width": true,
-        "autoplay": true,
+        "autoplay": false,
         "mute": false,
         "modal": false
       }
@@ -22,7 +22,7 @@
     "c4d46a89-130e-4206-8dba-4695d403d49d": {
       "type": "custom-video",
       "settings": {
-        "video_url": "https://www.youtube.com/watch?v=k85mRPqvMbE",
+        "video_url": "https:\/\/www.youtube.com\/watch?v=k85mRPqvMbE",
         "full_width": true,
         "autoplay": true,
         "mute": true,
@@ -30,5 +30,9 @@
       }
     }
   },
-  "order": ["custom-video", "message-form"]
+  "order": [
+    "custom-video",
+    "message-form",
+    "c4d46a89-130e-4206-8dba-4695d403d49d"
+  ]
 }
