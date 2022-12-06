@@ -1,11 +1,25 @@
 {
   "sections": {
-    "message-form": {
-      "type": "message-form"
-    },
     "custom-video": {
-      "type": "custom-video"
+      "type": "custom-video",
+      "settings": {
+        "video_url": "https:\/\/vimeo.com\/773601002",
+        "play-button_color": "#FFFFFF",
+        "shopify_video": "shopify:\/\/files\/videos\/production ID_3840442.mp4"
+      }
+    },
+    "message-form": {
+      "type": "message-form",
+      "settings": {
+        "title": "Contact Us",
+        "description": "The Voodoo team is looking forward to hearing from you!",
+        "button-text": "Send Message",
+        "padding": 100
+      }
     }
   },
-  "order": ["custom-video", "message-form"]
+  "order": [
+    "custom-video",
+    "message-form"
+  ]
 }
