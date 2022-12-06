@@ -49,8 +49,8 @@
 }
 
 .video-text__text {
-  color: white;
   max-width: var(--page-width);
+  color: #fff;
   text-align: center;
 }
 
