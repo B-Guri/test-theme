@@ -6,7 +6,7 @@
   <div class="custom-video__content page-width">
 {%- endif -%}
   <div class="play-button on-pause">
-    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 485 485" style="enable-background:new 0 0 485 485;" xml:space="preserve" fill={{ section.settings.play-button_color}}>
+    {%- comment -%} <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 485 485" style="enable-background:new 0 0 485 485;" xml:space="preserve" fill={{ section.settings.play-button_color}}>
       <g>
         <path d="M413.974,71.026C368.171,25.225,307.274,0,242.5,0S116.829,25.225,71.026,71.026C25.225,116.829,0,177.726,0,242.5
                     s25.225,125.671,71.026,171.474C116.829,459.775,177.726,485,242.5,485s125.671-25.225,171.474-71.026
@@ -14,20 +14,23 @@
                     S125.327,30,242.5,30S455,125.327,455,242.5S359.673,455,242.5,455z"/>
         <polygon points="181.062,336.575 343.938,242.5 181.062,148.425 	"/>
       </g>
-    </svg>
+    </svg> {%- endcomment -%}
   </div>
-  {%- if section.settings.mute -%}
-      {%- assign mute = "&mute=1" -%}
-  {%- endif -%}
   {%- if section.settings.autoplay -%}
     {%- assign autoplay = "autoplay=1&" -%}
-{%- endif -%}
+  {%- endif -%}
 
 
   {%- if section.settings.video_url contains "youtube" -%}
-    <iframe loading="lazy" class="video-player yt" , src="https://www.youtube.com/embed/{{ section.settings.video_url | remove: "https://www.youtube.com/watch?v="}}?{{autoplay}}loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1{{mute}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    {%- if section.settings.mute -%}
+      {%- assign ytmute = "&mute=1" -%}
+  {%- endif -%}
+    <iframe loading="lazy" class="video-player yt" , src="https://www.youtube.com/embed/{{ section.settings.video_url | remove: "https://www.youtube.com/watch?v="}}?{{autoplay}}loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1{{ytmute}}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   {%- elsif section.settings.video_url contains "vimeo" -%}
-    <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url | remove: "https://vimeo.com/"}}?{{autoplay}}loop=1&muted=0&controls=0" frameborder="0"></iframe>
+  {%- if section.settings.mute -%}
+    {%- assign vmmute = "&muted=1" -%}
+  {%- endif -%}
+    <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url | remove: "https://vimeo.com/"}}?{{autoplay}}loop=1&controls=0{{vmmute}}" frameborder="0"></iframe>
   {%- else -%}
     <video 
       class="video-player" 
