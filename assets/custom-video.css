@@ -1,10 +1,20 @@
 .custom-video__content {
   overflow: hidden;
-  width: 100%;
   aspect-ratio: 16 / 9;
   position: relative;
   cursor: pointer;
 }
+
+.full-width {
+  width: 100%;
+}
+
+.page-width {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
 .video-player {
   width: 300%;
   height: 100%;

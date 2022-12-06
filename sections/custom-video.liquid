@@ -1,7 +1,7 @@
 {{ "custom-video.css" | asset_url | stylesheet_tag }}
 
+{%- assign is_full_width = section.settings.full_width -%}
 <div class="custom-video__content">
-
   <div class="play-button on-pause">
     <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 485 485" style="enable-background:new 0 0 485 485;" xml:space="preserve" fill={{ section.settings.play-button_color}}>
       <g>
@@ -13,17 +13,10 @@
       </g>
     </svg>
   </div>
-  {%- assign video_params = "" -%}
-  {%- if section.settings.autoplay -%}
-    {{ video_params | append: "&autoplay=1"}}
-  {%- endif -%}
   {%- if section.settings.video_url contains "youtube" -%}
-    {%- assign video_id = section.settings.video_url | remove: "https://www.youtube.com/watch?v=" -%}
-    <iframe loading="lazy" class="video-player yt" , src={{"https://www.youtube.com/embed/" | append: video_id | append: "?loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1" | append: video_params}} frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe loading="lazy" class="video-player yt" , src="https://www.youtube.com/embed/{{ section.settings.video_url | remove: "https://www.youtube.com/watch?v="}}&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   {%- elsif section.settings.video_url contains "vimeo" -%}
-      {%- assign video_id = section.settings.video_url | remove: "https://vimeo.com/" -%}
-      {%- comment -%} <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url | remove: "https://vimeo.com/"}}?loop=1&controls=0" frameborder="0"></iframe> {%- endcomment -%}
-      <iframe loading="lazy" class="video-player vm" , src={{"https://player.vimeo.com/video/" | append: video_id | append: "?loop=1&controls=0" | append: video_params}} frameborder="0"></iframe>
+    <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url | remove: "https://vimeo.com/" }}?autoplay=1&loop=1&muted=1&controls=0" frameborder="0"></iframe>
   {%- else -%}
     <video 
       class="video-player" 
@@ -41,7 +34,6 @@
       <source src={{ section.settings.video_url }} type="video/mp4">
     </video>
   {%- endif -%}
-  {{video_params}}
   {%- comment -%}
     {%- if section.settings.shopify_video != blank -%}
     <video 
@@ -65,8 +57,18 @@
     {%- endif -%}
   {%- endcomment -%}
 </div>
-<script src="{{ 'custom-video.js' | asset_url }}" defer="defer"></script>
 
+<script>
+  let isFullWidth = is_full_width;
+  let videoContainer = document.querySelector(".custom-video__content");
+  if(isFullWidth){
+    videoContainer.classList.append("full-width");
+  }
+  else
+  {
+    videoContainer.classList.append("page-width");
+  }
+</script>
 
 {% schema %}
   {
