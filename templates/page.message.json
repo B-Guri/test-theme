@@ -3,9 +3,9 @@
     "custom-video": {
       "type": "custom-video",
       "settings": {
-        "video_url": "https:\/\/vimeo.com\/773601002",
+        "video_url": "https://vimeo.com/773601002",
         "play-button_color": "#FFFFFF",
-        "shopify_video": "shopify:\/\/files\/videos\/production ID_3840442.mp4"
+        "shopify_video": "shopify://files/videos/production ID_3840442.mp4"
       }
     },
     "message-form": {
@@ -18,8 +18,5 @@
       }
     }
   },
-  "order": [
-    "custom-video",
-    "message-form"
-  ]
+  "order": ["custom-video", "message-form"]
 }
