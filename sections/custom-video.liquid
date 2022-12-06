@@ -59,14 +59,14 @@
 </div>
 
 <script>
-  let isFullWidth = is_full_width;
+  let isFullWidth = {{is_full_width}};
   let videoContainer = document.querySelector(".custom-video__content");
   if(isFullWidth){
-    videoContainer.classList.append("full-width");
+    videoContainer.classList.add("full-width");
   }
   else
   {
-    videoContainer.classList.append("page-width");
+    videoContainer.classList.add("page-width");
   }
 </script>
 
@@ -86,7 +86,7 @@
         "type": "checkbox",
         "id": "full_width",
         "label": "Full width",
-        "default": true
+        "default": false
       },
       {
         "type": "checkbox",
