@@ -5,8 +5,13 @@
 {%- else -%}
   <div class="custom-video__content page-width">
 {%- endif -%}
+
+{%- if section.settings.autoplay -%}
+  <div class="play-button">
+{%- else -%}    
   <div class="play-button on-pause">
-    {%- comment -%} <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 485 485" style="enable-background:new 0 0 485 485;" xml:space="preserve" fill={{ section.settings.play-button_color}}>
+{%- endif -%}
+    <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 485 485" style="enable-background:new 0 0 485 485;" xml:space="preserve" fill={{ section.settings.play-button_color}}>
       <g>
         <path d="M413.974,71.026C368.171,25.225,307.274,0,242.5,0S116.829,25.225,71.026,71.026C25.225,116.829,0,177.726,0,242.5
                     s25.225,125.671,71.026,171.474C116.829,459.775,177.726,485,242.5,485s125.671-25.225,171.474-71.026
@@ -14,7 +19,7 @@
                     S125.327,30,242.5,30S455,125.327,455,242.5S359.673,455,242.5,455z"/>
         <polygon points="181.062,336.575 343.938,242.5 181.062,148.425 	"/>
       </g>
-    </svg> {%- endcomment -%}
+    </svg>
   </div>
   {%- if section.settings.autoplay -%}
     {%- assign autoplay = "autoplay=1&" -%}
@@ -47,29 +52,9 @@
       <source src={{ section.settings.video_url }} type="video/mp4">
     </video>
   {%- endif -%}
-  {%- comment -%}
-    {%- if section.settings.shopify_video != blank -%}
-    <video 
-    class="video-player"
-    playsinline="playsinline" 
-    autoplay="autoplay" 
-    loop="loop" muted="muted" 
-    controls="controls" 
-    preload="metadata" 
-    aria-label="Potion beats" 
-    poster="//cdn.shopify.com/s/files/1/0561/7470/6753/products/4edc28a708b7405093a927cebe794f1a.thumbnail.0000000_small.jpg?v=1655255324">
-    <source src={{ section.settings.shopify_video }} type="video/mp4">
-    </video>
-    {%- else -%}
-    {%- if section.settings.video_url.type == "youtube" -%}
-    <iframe loading="lazy" class="video-player yt" , src="https://www.youtube.com/embed/{{ section.settings.video_url.id }}?autopause=1&mute=1&loop=1&color=white&controls=0&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    {%- elsif section.settings.video_url.type == "vimeo" -%}
-    <iframe loading="lazy" class="video-player vm" , src="https://player.vimeo.com/video/{{ section.settings.video_url.id }}?autopause=1&loop=1&muted=1&controls=0" frameborder="0"></iframe>    
-    {%- else -%}
-    {%- endif -%}
-    {%- endif -%}
-  {%- endcomment -%}
 </div>
+
+<script src={{ "custom-video.js" | asset_url}} defer="defer"></script>
 
 {% schema %}
   {
@@ -79,8 +64,7 @@
         "type": "text",
         "label": "Video Url",
         "id": "video_url",
-        "default": "https://cdn.shopify.com/videos/c/o/v/7a63eb2354ea426095812bd4102a891c.mp4"
-        // "default": "https://vimeo.com/773601002"
+        "default": "https://www.youtube.com/watch?v=k85mRPqvMbE"
       }, {
         "type": "checkbox",
         "id": "full_width",
@@ -97,7 +81,7 @@
         "type": "checkbox",
         "id": "mute",
         "label": "Mute",
-        "default": false
+        "default": true
       },
       {
         "type": "checkbox",
@@ -105,30 +89,6 @@
         "label": "Modal",
         "default": false
       }
-
-// {
-// "type": "video_url",
-// "id": "video_url",
-// "accept": [
-//     "youtube", "vimeo"
-// ],
-
-// // "default": "https://www.youtube.com/watch?v=k85mRPqvMbE",
-
-// "default": "https://vimeo.com/773601002",
-// "label": "Video url"
-// },
-// {
-// "type": "color",
-// "id": "play-button_color",
-// "default": "#FFFFFF",
-// "label": "Color for play button"
-// },
-// {
-// "type": "video",
-// "id": "shopify_video",
-// "label": "Video from shopify"
-// }
     ],
     "presets": [
       {

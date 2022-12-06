@@ -3,34 +3,55 @@ let player;
 let playButton = document.querySelector(".play-button");
 
 playerContainer.addEventListener("click", () => {
-  player = document.querySelector(".video-player");
+  player = playerContainer.lastChild;
+  // player = document.querySelector(".video-player");
+  console.log("click");
   let command;
   if (playButton.classList.contains("on-pause")) {
     if (player.classList.contains("yt")) {
-      command = {
-        event: "command",
-        func: "playVideo",
-      };
+      command = playVideo("youtube");
     } else if (player.classList.contains("vm")) {
-      console.log("CLICK vm");
-      command = {
-        method: "play",
-        value: "true",
-      };
+      command = playVideo("vimeo");
     }
   } else {
     if (player.classList.contains("yt")) {
-      command = {
-        event: "command",
-        func: "pauseVideo",
-      };
+      command = pauseVideo("youtube");
     } else if (player.classList.contains("vm")) {
-      command = {
-        method: "pause",
-        value: "true",
-      };
+      command = pauseVideo("vimeo");
     }
   }
   playButton.classList.toggle("on-pause");
   player.contentWindow.postMessage(JSON.stringify(command), "*");
 });
+
+function pauseVideo(platform) {
+  let command;
+  if (platform == "youtube") {
+    command = {
+      event: "command",
+      func: "pauseVideo",
+    };
+  } else if (platform == "vimeo") {
+    command = {
+      method: "pause",
+      value: "true",
+    };
+  }
+  return command;
+}
+
+function playVideo(platform) {
+  let command;
+  if (platform == "youtube") {
+    command = {
+      event: "command",
+      func: "playVideo",
+    };
+  } else if (platform == "vimeo") {
+    command = {
+      method: "play",
+      value: "true",
+    };
+  }
+  return command;
+}
