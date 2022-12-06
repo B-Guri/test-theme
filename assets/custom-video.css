@@ -48,6 +48,11 @@
   color: white;
 }
 
+.video-text__text {
+  color: white;
+  max-width: var(--page-width);
+}
+
 .on-pause {
   visibility: visible;
 }
