@@ -306,7 +306,13 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
     </script>
-  </head>
+  
+
+{% if content_for_header contains 'fastbundle.co' %}
+    {% render 'fast_bundle_service' %}
+{% endif %}
+
+</head>
 
   <body class="gradient">
     <a class="skip-to-content-link button visually-hidden" href="#MainContent">
